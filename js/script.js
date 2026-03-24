@@ -1,18 +1,4 @@
-// ========== STATE ==========
-let parties = []; // Array of party objects
-let nextId = 1;
 
-// Data structure for a party:
-// {
-//   id: number,
-//   name: string,
-//   date: string (YYYY-MM-DD format),
-//   time: string (HH:MM format),
-//   location: string,
-//   description: string
-// }
-
-// ========== DOM ELEMENTS ==========
 const landingPage = document.getElementById('landingPage');
 const mainApp = document.getElementById('mainApp');
 const enterBtn = document.getElementById('enterBtn');
