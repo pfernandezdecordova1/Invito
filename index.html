@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invito - Party Countdown Invitations</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">🎉 Invito</h1>
+            <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
+        </div>
+    </header>
+
+    <!-- Create Party Form Modal -->
+    <div id="formModal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create a New Party</h2>
+                <button id="closeFormBtn" class="btn-close">&times;</button>
+            </div>
+            <form id="partyForm" class="party-form">
+                <div class="form-group">
+                    <label for="partyName">Party Name *</label>
+                    <input type="text" id="partyName" required placeholder="e.g., Summer BBQ">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="partyDate">Date *</label>
+                        <input type="date" id="partyDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="partyTime">Time *</label>
+                        <input type="time" id="partyTime" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="partyLocation">Location *</label>
+                    <input type="text" id="partyLocation" required placeholder="e.g., Central Park">
+                </div>
+
+                <div class="form-group">
+                    <label for="partyDescription">Description</label>
+                    <textarea id="partyDescription" placeholder="Tell your guests more details..."></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Create Party</button>
+                    <button type="button" id="cancelFormBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container">
+        <div id="emptyState" class="empty-state">
+            <p>🎈 No parties yet! Click "Create Party" to get started.</p>
+        </div>
+
+        <div id="partiesGrid" class="parties-grid"></div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
