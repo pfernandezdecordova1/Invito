@@ -1,4 +1,19 @@
 
+// ========== STATE ==========
+let parties = []; // Array of party objects
+let nextId = 1;
+
+// Data structure for a party:
+// {
+//   id: number,
+//   name: string,
+//   date: string (YYYY-MM-DD format),
+//   time: string (HH:MM format),
+//   location: string,
+//   description: string
+// }
+
+// ========== DOM ELEMENTS ==========
 const landingPage = document.getElementById('landingPage');
 const mainApp = document.getElementById('mainApp');
 const enterBtn = document.getElementById('enterBtn');
@@ -74,6 +89,76 @@ function openCelebration() {
 
 function closeCelebration() {
     celebrationModal.classList.add('hidden');
+}
+
+// ========== FUNCTIONS - EVENT DETAIL PAGE ==========
+function showEventDetailPage(party) {
+    mainContent.classList.add('hidden');
+    eventDetailPage.classList.remove('hidden');
+
+    // Generate formal document content
+    const documentHTML = `
+        <h2>${escapeHtml(party.name)}</h2>
+        
+        <div class="event-detail-item">
+            <div class="detail-label">Date</div>
+            <div class="detail-value">${formatDate(party.date)}</div>
+        </div>
+
+        <div class="event-detail-item">
+            <div class="detail-label">Time</div>
+            <div class="detail-value">${party.time}</div>
+        </div>
+
+        <div class="event-detail-item">
+            <div class="detail-label">Venue</div>
+            <div class="detail-value">${escapeHtml(party.location)}</div>
+        </div>
+
+        ${party.description ? `
+            <div class="event-detail-item">
+                <div class="detail-label">Event Details</div>
+                <div class="detail-value">${escapeHtml(party.description)}</div>
+            </div>
+        ` : ''}
+
+        <div style="margin-top: 50px; text-align: center; font-style: italic; color: #999;">
+            <p>We look forward to celebrating with you</p>
+        </div>
+    `;
+
+    detailContent.innerHTML = documentHTML;
+
+    // Scroll to top
+    window.scrollTo(0, 0);
+}
+
+function backToGrid() {
+    eventDetailPage.classList.add('hidden');
+    mainContent.classList.remove('hidden');
+    renderParties();
+}
+
+function printInvitation() {
+    window.print();
+}
+
+function shareInvitation() {
+    const party = parties[parties.length - 1];
+    if (!party) return;
+
+    const text = `You're invited to ${party.name}!
+📅 ${formatDate(party.date)} at ${party.time}
+📍 ${party.location}
+${party.description ? `\n📝 ${party.description}` : ''}
+
+Manage your RSVP at: INVITO - Luxury Event Curation Platform`;
+
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Invitation copied to clipboard!');
+    }).catch(() => {
+        alert('Failed to copy. Please try again.');
+    });
 }
 
 // ========== FUNCTIONS - CREATE PARTY ==========
