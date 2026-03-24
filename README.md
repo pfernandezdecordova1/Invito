@@ -1,6 +1,6 @@
 # Invito - Invitation App
 
-Create custom party invitations with live countdown timers for your guests.
+I want to create a custom party invitation web page with live countdown timers for your guests and animation to make it look fun and festive. This will be super helpful for the people that dont want to spend time or money on making physical or online invitations.
 
 ## Features
 - Create party cards with event details (name, date, time, location, description)
@@ -20,6 +20,6 @@ Create custom party invitations with live countdown timers for your guests.
 [Add GitHub Pages URL when deployed]
 
 ## Technologies
-- HTML5
-- CSS3
+- HTML 
+- CSS
 - Vanilla JavaScript 
