@@ -13,6 +13,10 @@ let nextId = 1;
 // }
 
 // ========== DOM ELEMENTS ==========
+const landingPage = document.getElementById('landingPage');
+const mainApp = document.getElementById('mainApp');
+const enterBtn = document.getElementById('enterBtn');
+
 const createPartyBtn = document.getElementById('createPartyBtn');
 const formModal = document.getElementById('formModal');
 const closeFormBtn = document.getElementById('closeFormBtn');
@@ -20,6 +24,9 @@ const cancelFormBtn = document.getElementById('cancelFormBtn');
 const partyForm = document.getElementById('partyForm');
 const partiesGrid = document.getElementById('partiesGrid');
 const emptyState = document.getElementById('emptyState');
+
+// ========== EVENT LISTENERS - PAGE NAVIGATION ==========
+enterBtn.addEventListener('click', navigateToApp);
 
 // ========== EVENT LISTENERS - MODAL CONTROL ==========
 createPartyBtn.addEventListener('click', openForm);
@@ -35,6 +42,12 @@ formModal.addEventListener('click', (e) => {
 
 // ========== EVENT LISTENERS - FORM SUBMISSION ==========
 partyForm.addEventListener('submit', handleCreateParty);
+
+// ========== FUNCTIONS - PAGE NAVIGATION ==========
+function navigateToApp() {
+    landingPage.classList.add('hidden');
+    mainApp.classList.remove('hidden');
+}
 
 // ========== FUNCTIONS - MODAL CONTROL ==========
 function openForm() {

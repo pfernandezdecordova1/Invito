@@ -3,28 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invito - Party Countdown Invitations</title>
+    <title>INVITO - Luxury Event Curation Platform</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">🎉 Invito</h1>
-            <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
+    <!-- ===== LANDING PAGE ===== -->
+    <section id="landingPage" class="landing-page">
+        <div class="landing-hero" style="background: linear-gradient(135deg, rgba(20, 20, 40, 0.9), rgba(60, 20, 80, 0.9)), url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80') center/cover;">
+            <div class="landing-image">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80" alt="Leonardo DiCaprio - Wolf of Wall Street Vibes" class="leo-image">
+            </div>
+            <div class="landing-content">
+                <h1 class="landing-title">Are you prepared to become a member of the <span class="highlight">INVITE CLUB</span>?</h1>
+                
+                <div class="landing-taglines">
+                    <p class="tagline">Be Yourself</p>
+                    <p class="tagline">Stop Stressing</p>
+                    <p class="tagline">Start Celebrating</p>
+                </div>
+
+                <p class="landing-description">
+                    Where extraordinary moments meet effortless elegance. 
+                    <br>
+                    <strong>INVITO</strong> is your gateway to hosting unforgettable luxury events.
+                </p>
+
+                <button id="enterBtn" class="btn btn-cta">Lets Go Party</button>
+            </div>
         </div>
-    </header>
+    </section>
+
+    <!-- ===== MAIN APP PAGE ===== -->
+    <section id="mainApp" class="main-app hidden">
+        <header class="header">
+            <div class="container">
+                <h1 class="logo">INVITO</h1>
+                <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
+            </div>
+        </header>
 
     <!-- Create Party Form Modal -->
     <div id="formModal" class="modal hidden">
         <div class="modal-content">
             <div class="modal-header">
-                <h2>Create a New Party</h2>
+                <h2>Create Your Exclusive Event</h2>
                 <button id="closeFormBtn" class="btn-close">&times;</button>
             </div>
             <form id="partyForm" class="party-form">
                 <div class="form-group">
-                    <label for="partyName">Party Name *</label>
-                    <input type="text" id="partyName" required placeholder="e.g., Summer BBQ">
+                    <label for="partyName">Event Name *</label>
+                    <input type="text" id="partyName" required placeholder="The Grand Soiree">
                 </div>
 
                 <div class="form-row">
@@ -39,17 +68,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="partyLocation">Location *</label>
-                    <input type="text" id="partyLocation" required placeholder="e.g., Central Park">
+                    <label for="partyLocation">Venue *</label>
+                    <input type="text" id="partyLocation" required placeholder="The Plaza - New York">
                 </div>
 
                 <div class="form-group">
-                    <label for="partyDescription">Description</label>
-                    <textarea id="partyDescription" placeholder="Tell your guests more details..."></textarea>
+                    <label for="partyDescription">Event Details</label>
+                    <textarea id="partyDescription" placeholder="Dress code, special requests, theme..."></textarea>
                 </div>
 
                 <div class="form-actions">
-                    <button type="submit" class="btn btn-primary">Create Party</button>
+                    <button type="submit" class="btn btn-primary">Create Event</button>
                     <button type="button" id="cancelFormBtn" class="btn btn-secondary">Cancel</button>
                 </div>
             </form>
@@ -59,11 +88,13 @@
     <!-- Main Content -->
     <main class="container">
         <div id="emptyState" class="empty-state">
-            <p>🎈 No parties yet! Click "Create Party" to get started.</p>
+            <p>Ready to host your next luxury event?</p>
+            <p>Click "Create Party" to get started</p>
         </div>
 
         <div id="partiesGrid" class="parties-grid"></div>
     </main>
+    </section>
 
     <script src="script.js"></script>
 </body>
