@@ -90,8 +90,17 @@
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container">
+    <!-- Celebration Modal -->
+    <div id="celebrationModal" class="modal hidden">
+        <div class="celebration-content">
+            <button id="closeCelebrationBtn" class="btn-close celebration-close">&times;</button>
+            <img src="https://s.yimg.com/ny/api/res/1.2/geJOs42jbVs1X7tAt0YqyA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTIwNDg7aD0xMTUyO2NmPXdlYnA-/https://media.zenfs.com/en/cover_media_309/75fb4017ee38da27027f2112f6fd8eb2" alt="Celebration">
+            <h2 class="celebration-title">Congrats! The Party Awaits</h2>
+        </div>
+    </div>
+
+    <!-- Main Content - Party Grid -->
+    <main class="container" id="mainContent">
         <div id="emptyState" class="empty-state">
             <p>Ready to host your next luxury event?</p>
             <p>Click "Create Party" to get started</p>
@@ -99,6 +108,34 @@
 
         <div id="partiesGrid" class="parties-grid"></div>
     </main>
+
+    <!-- Event Detail Page -->
+    <section id="eventDetailPage" class="event-detail-page hidden">
+        <div class="event-detail-container">
+            <button id="backToGridBtn" class="btn btn-back">← Back to Events</button>
+            
+            <div class="formal-document">
+                <div class="document-header">
+                    <h1>INVITATION</h1>
+                    <div class="header-divider"></div>
+                </div>
+
+                <div class="document-body">
+                    <div id="detailContent"></div>
+                </div>
+
+                <div class="document-footer">
+                    <p>Powered by <span class="brand-name">INVITO</span></p>
+                    <p style="font-size: 12px; margin-top: 10px;">Luxury Event Curation Platform</p>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button id="printBtn" class="btn btn-primary">Print Invitation</button>
+                <button id="shareBtn" class="btn btn-primary">Copy Invitation Link</button>
+            </div>
+        </div>
+    </section>
     </section>
 
     <script src="js/script.js"></script>

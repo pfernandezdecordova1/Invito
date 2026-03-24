@@ -280,6 +280,249 @@ body {
     color: var(--danger-color);
 }
 
+/* Celebration Modal */
+.celebration-content {
+    background: linear-gradient(135deg, var(--bg-white), #efefea);
+    border-radius: 0;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--shadow-lg);
+    border: 3px solid var(--accent-color);
+    animation: celebrationPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 40px;
+    text-align: center;
+    position: relative;
+}
+
+@keyframes celebrationPop {
+    0% {
+        transform: scale(0.3) rotateZ(-10deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.05) rotateZ(2deg);
+    }
+    100% {
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+}
+
+.celebration-content img {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    margin-bottom: 30px;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+}
+
+.celebration-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: var(--text-dark);
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--accent-color), #c9a961);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: textGlow 0.8s ease-out;
+}
+
+@keyframes textGlow {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Event Detail Page */
+.event-detail-page {
+    background-color: var(--bg-dark);
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.event-detail-container {
+    max-width: 800px;
+    width: 100%;
+}
+
+.btn-back {
+    background: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: var(--accent-color);
+    color: #000;
+}
+
+.formal-document {
+    background: white;
+    color: #000;
+    padding: 60px 50px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+    border: 3px solid var(--accent-color);
+    margin-bottom: 30px;
+    page-break-inside: avoid;
+}
+
+.document-header {
+    text-align: center;
+    margin-bottom: 50px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #000;
+}
+
+.document-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin: 0;
+    color: #000;
+}
+
+.header-divider {
+    width: 80px;
+    height: 2px;
+    background: var(--accent-color);
+    margin: 20px auto 0;
+}
+
+.document-body {
+    margin: 40px 0;
+    line-height: 1.8;
+}
+
+.document-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 30px 0 15px 0;
+    color: #000;
+}
+
+.event-detail-item {
+    margin: 20px 0;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.event-detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-label {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.detail-value {
+    font-size: 18px;
+    color: #000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.document-footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 2px solid #000;
+    font-size: 14px;
+    color: #666;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: var(--accent-color);
+    font-size: 16px;
+    letter-spacing: 2px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.action-buttons .btn {
+    min-width: 180px;
+    padding: 15px 30px;
+    font-size: 16px;
+}
+
+@media print {
+    .btn-back,
+    .action-buttons {
+        display: none !important;
+    }
+
+    .event-detail-page {
+        background: white;
+        padding: 0;
+    }
+
+    .formal-document {
+        box-shadow: none;
+        border: none;
+        padding: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .event-detail-page {
+        padding: 20px 10px;
+    }
+
+    .formal-document {
+        padding: 40px 30px;
+    }
+
+    .document-header h1 {
+        font-size: 36px;
+    }
+
+    .document-body h2 {
+        font-size: 22px;
+    }
+
+    .detail-value {
+        font-size: 16px;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .action-buttons .btn {
+        width: 100%;
+    }
+}
+
 /* Modal */
 .modal {
     display: none;

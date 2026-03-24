@@ -11,6 +11,16 @@ const partyForm = document.getElementById('partyForm');
 const partiesGrid = document.getElementById('partiesGrid');
 const emptyState = document.getElementById('emptyState');
 
+const celebrationModal = document.getElementById('celebrationModal');
+const closeCelebrationBtn = document.getElementById('closeCelebrationBtn');
+
+const eventDetailPage = document.getElementById('eventDetailPage');
+const mainContent = document.getElementById('mainContent');
+const backToGridBtn = document.getElementById('backToGridBtn');
+const printBtn = document.getElementById('printBtn');
+const shareBtn = document.getElementById('shareBtn');
+const detailContent = document.getElementById('detailContent');
+
 // ========== EVENT LISTENERS - PAGE NAVIGATION ==========
 enterBtn.addEventListener('click', navigateToApp);
 
@@ -18,6 +28,7 @@ enterBtn.addEventListener('click', navigateToApp);
 createPartyBtn.addEventListener('click', openForm);
 closeFormBtn.addEventListener('click', closeForm);
 cancelFormBtn.addEventListener('click', closeForm);
+closeCelebrationBtn.addEventListener('click', closeCelebration);
 
 // Close modal when clicking outside
 formModal.addEventListener('click', (e) => {
@@ -25,6 +36,18 @@ formModal.addEventListener('click', (e) => {
         closeForm();
     }
 });
+
+// Close celebration modal when clicking outside
+celebrationModal.addEventListener('click', (e) => {
+    if (e.target === celebrationModal) {
+        closeCelebration();
+    }
+});
+
+// ========== EVENT LISTENERS - EVENT DETAIL PAGE ==========
+backToGridBtn.addEventListener('click', backToGrid);
+printBtn.addEventListener('click', printInvitation);
+shareBtn.addEventListener('click', shareInvitation);
 
 // ========== EVENT LISTENERS - FORM SUBMISSION ==========
 partyForm.addEventListener('submit', handleCreateParty);
@@ -45,6 +68,14 @@ function closeForm() {
     formModal.classList.add('hidden');
 }
 
+function openCelebration() {
+    celebrationModal.classList.remove('hidden');
+}
+
+function closeCelebration() {
+    celebrationModal.classList.add('hidden');
+}
+
 // ========== FUNCTIONS - CREATE PARTY ==========
 function handleCreateParty(e) {
     e.preventDefault();
@@ -55,6 +86,9 @@ function handleCreateParty(e) {
     const time = document.getElementById('partyTime').value;
     const location = document.getElementById('partyLocation').value;
     const description = document.getElementById('partyDescription').value;
+
+    // Check if this is the first party
+    const isFirstParty = parties.length === 0;
 
     // Create party object
     const newParty = {
@@ -69,9 +103,16 @@ function handleCreateParty(e) {
     // Add to state
     parties.push(newParty);
 
-    // Update DOM
-    renderParties();
+    // Close form and show detail page
     closeForm();
+    showEventDetailPage(newParty);
+
+    // Show celebration for first party
+    if (isFirstParty) {
+        setTimeout(() => {
+            openCelebration();
+        }, 500);
+    }
 }
 
 // ========== FUNCTIONS - DELETE PARTY ==========
