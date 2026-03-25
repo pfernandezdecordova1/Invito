@@ -17,7 +17,7 @@ I want to create a custom party invitation web page with live countdown timers f
 5. Delete when party is over
 
 ## Live Demo
-[Add GitHub Pages URL when deployed]
+https://github.com/pfernandezdecordova1/Invito.git
 
 ## Technologies
 - HTML 
