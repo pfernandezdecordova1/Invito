@@ -24,7 +24,6 @@ const closeFormBtn = document.getElementById('closeFormBtn');
 const cancelFormBtn = document.getElementById('cancelFormBtn');
 const partyForm = document.getElementById('partyForm');
 const partiesGrid = document.getElementById('partiesGrid');
-const emptyState = document.getElementById('emptyState');
 
 const celebrationModal = document.getElementById('celebrationModal');
 const closeCelebrationBtn = document.getElementById('closeCelebrationBtn');
@@ -240,13 +239,6 @@ function viewInvitation(id) {
 // ========== FUNCTIONS - RENDER ==========
 function renderParties() {
     partiesGrid.innerHTML = '';
-
-    if (parties.length === 0) {
-        emptyState.style.display = 'block';
-        return;
-    }
-
-    emptyState.style.display = 'none';
 
     parties.forEach(party => {
         const partyCard = createPartyCard(party);
