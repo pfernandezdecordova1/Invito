@@ -342,7 +342,36 @@ body {
     }
 }
 
-/* Event Detail Page */
+/* Navigation Tabs */
+.nav-tabs {
+    display: flex;
+    gap: 5px;
+}
+
+.nav-tab {
+    background: transparent;
+    color: rgba(245, 245, 240, 0.6);
+    border: none;
+    padding: 10px 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-tab:hover {
+    color: var(--text-white);
+}
+
+.nav-tab.active {
+    color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+}
+
+/* Event Detail Page - Luxury Invitation */
 .event-detail-page {
     background-color: var(--bg-dark);
     min-height: 100vh;
@@ -353,7 +382,7 @@ body {
 }
 
 .event-detail-container {
-    max-width: 800px;
+    max-width: 700px;
     width: 100%;
 }
 
@@ -373,93 +402,165 @@ body {
     color: #000;
 }
 
-.formal-document {
-    background: white;
-    color: #000;
-    padding: 60px 50px;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
-    border: 3px solid var(--accent-color);
+/* Invitation Card */
+.invitation-card {
     margin-bottom: 30px;
-    page-break-inside: avoid;
+    animation: fadeIn 0.6s ease;
 }
 
-.document-header {
+.invitation-border {
+    background: linear-gradient(135deg, var(--accent-color), #8b7355, var(--accent-color), #8b7355);
+    padding: 4px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.15);
+}
+
+.invitation-inner {
+    background: linear-gradient(180deg, #0d1b3d 0%, #0a1629 40%, #0d1b3d 100%);
+    padding: 60px 50px;
     text-align: center;
-    margin-bottom: 50px;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #000;
+    position: relative;
+    overflow: hidden;
 }
 
-.document-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 48px;
-    font-weight: 900;
-    letter-spacing: 3px;
+.invitation-inner::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    pointer-events: none;
+}
+
+.invitation-inner::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center top, rgba(212, 175, 55, 0.08) 0%, transparent 60%);
+    pointer-events: none;
+}
+
+.invitation-top-ornament {
+    font-size: 24px;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    letter-spacing: 8px;
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-pretext {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
     text-transform: uppercase;
-    margin: 0;
-    color: #000;
+    letter-spacing: 4px;
+    color: rgba(201, 169, 97, 0.7);
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
 }
 
-.header-divider {
-    width: 80px;
-    height: 2px;
-    background: var(--accent-color);
-    margin: 20px auto 0;
-}
-
-.document-body {
-    margin: 40px 0;
-    line-height: 1.8;
-}
-
-.document-body h2 {
+.invitation-event-name {
     font-family: 'Playfair Display', serif;
-    font-size: 28px;
+    font-size: 42px;
     font-weight: 700;
-    margin: 30px 0 15px 0;
-    color: #000;
+    color: var(--text-white);
+    letter-spacing: 2px;
+    line-height: 1.2;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
 }
 
-.event-detail-item {
-    margin: 20px 0;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
+.invitation-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 25px 0;
+    position: relative;
+    z-index: 1;
 }
 
-.event-detail-item:last-child {
+.divider-ornament {
+    display: block;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+}
+
+.invitation-details {
+    max-width: 400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.invitation-detail-row:last-child {
     border-bottom: none;
 }
 
-.detail-label {
-    font-weight: 700;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #666;
-    margin-bottom: 5px;
-}
-
-.detail-value {
-    font-size: 18px;
-    color: #000;
+.inv-label {
     font-family: 'Montserrat', sans-serif;
-}
-
-.document-footer {
-    text-align: center;
-    margin-top: 50px;
-    padding-top: 30px;
-    border-top: 2px solid #000;
-    font-size: 14px;
-    color: #666;
-}
-
-.brand-name {
-    font-family: 'Playfair Display', serif;
+    font-size: 11px;
     font-weight: 700;
-    color: var(--accent-color);
-    font-size: 16px;
     letter-spacing: 2px;
+    color: var(--accent-color);
+    min-width: 80px;
+    text-align: left;
+}
+
+.inv-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    color: var(--text-white);
+    text-align: right;
+    flex: 1;
+    margin-left: 20px;
+}
+
+.invitation-closing {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(245, 245, 240, 0.6);
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-footer {
+    position: relative;
+    z-index: 1;
+}
+
+.invitation-brand {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: var(--accent-color);
+    margin-bottom: 4px;
+}
+
+.invitation-tagline {
+    display: block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: rgba(201, 169, 97, 0.5);
 }
 
 .action-buttons {
@@ -477,7 +578,8 @@ body {
 
 @media print {
     .btn-back,
-    .action-buttons {
+    .action-buttons,
+    .header {
         display: none !important;
     }
 
@@ -486,11 +588,230 @@ body {
         padding: 0;
     }
 
-    .formal-document {
+    .invitation-border {
         box-shadow: none;
-        border: none;
-        padding: 40px;
     }
+
+    .invitation-inner {
+        background: #0d1b3d !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* ===== MEMBERSHIP SECTION ===== */
+.membership-section {
+    background-color: var(--bg-dark);
+    min-height: 80vh;
+    padding: 60px 0;
+}
+
+.membership-hero {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.membership-hero h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: 15px;
+}
+
+.membership-hero .highlight {
+    color: var(--accent-color);
+}
+
+.membership-subtitle {
+    font-size: 16px;
+    color: rgba(245, 245, 240, 0.6);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.membership-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.membership-benefits h3,
+.membership-form-wrapper h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--accent-color);
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+}
+
+.benefits-list li {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.benefits-list li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.benefit-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--accent-color);
+    min-width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.benefits-list li strong {
+    display: block;
+    font-size: 16px;
+    color: var(--text-white);
+    margin-bottom: 5px;
+}
+
+.benefits-list li p {
+    font-size: 14px;
+    color: rgba(245, 245, 240, 0.5);
+    line-height: 1.5;
+}
+
+.membership-form-wrapper {
+    background: linear-gradient(135deg, rgba(13, 27, 61, 0.8), rgba(10, 22, 41, 0.9));
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 40px;
+}
+
+.membership-form .form-group {
+    margin-bottom: 20px;
+}
+
+.membership-form .form-group label {
+    color: var(--text-white);
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 600;
+}
+
+.membership-form .form-group input {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    color: var(--text-white);
+    padding: 14px;
+    font-size: 15px;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.membership-form .form-group input::placeholder {
+    color: rgba(245, 245, 240, 0.3);
+}
+
+.membership-form .form-group input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.membership-success {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.membership-success h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+.membership-success p {
+    color: rgba(245, 245, 240, 0.6);
+    line-height: 1.6;
+}
+
+.members-list-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+.members-list-section h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: var(--accent-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.members-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.member-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 0.4s ease;
+}
+
+.member-initial {
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, var(--accent-color), #8b7355);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0a1629;
+    flex-shrink: 0;
+}
+
+.member-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.member-name {
+    font-weight: 600;
+    color: var(--text-white);
+    font-size: 15px;
+    margin-bottom: 3px;
+}
+
+.member-location {
+    font-size: 12px;
+    color: rgba(245, 245, 240, 0.4);
+    letter-spacing: 0.5px;
 }
 
 @media (max-width: 768px) {
@@ -498,20 +819,27 @@ body {
         padding: 20px 10px;
     }
 
-    .formal-document {
-        padding: 40px 30px;
+    .invitation-inner {
+        padding: 40px 25px;
     }
 
-    .document-header h1 {
-        font-size: 36px;
+    .invitation-event-name {
+        font-size: 30px;
     }
 
-    .document-body h2 {
-        font-size: 22px;
+    .invitation-detail-row {
+        flex-direction: column;
+        gap: 4px;
+        text-align: center;
     }
 
-    .detail-value {
-        font-size: 16px;
+    .inv-label {
+        text-align: center;
+    }
+
+    .inv-value {
+        text-align: center;
+        margin-left: 0;
     }
 
     .action-buttons {
@@ -520,6 +848,47 @@ body {
 
     .action-buttons .btn {
         width: 100%;
+    }
+
+    .nav-tabs {
+        display: none;
+    }
+
+    .membership-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .membership-hero h2 {
+        font-size: 30px;
+    }
+
+    .membership-form-wrapper {
+        padding: 30px 20px;
+    }
+
+    .members-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Mobile nav toggle for tabs */
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+    }
+
+    .nav-tabs {
+        display: flex;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+
+    .nav-tab {
+        font-size: 12px;
+        padding: 8px 15px;
     }
 }
 

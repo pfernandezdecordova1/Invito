@@ -34,7 +34,28 @@ const mainContent = document.getElementById('mainContent');
 const backToGridBtn = document.getElementById('backToGridBtn');
 const printBtn = document.getElementById('printBtn');
 const shareBtn = document.getElementById('shareBtn');
-const detailContent = document.getElementById('detailContent');
+
+// Invitation detail elements
+const invEventName = document.getElementById('invEventName');
+const invDate = document.getElementById('invDate');
+const invTime = document.getElementById('invTime');
+const invLocation = document.getElementById('invLocation');
+const invDescription = document.getElementById('invDescription');
+const invDescRow = document.getElementById('invDescRow');
+
+// Navigation tabs
+const navEvents = document.getElementById('navEvents');
+const navMembership = document.getElementById('navMembership');
+
+// Membership elements
+const membershipSection = document.getElementById('membershipSection');
+const membershipForm = document.getElementById('membershipForm');
+const membershipSuccess = document.getElementById('membershipSuccess');
+const membersListSection = document.getElementById('membersListSection');
+const membersList = document.getElementById('membersList');
+
+// ========== STATE - MEMBERS ==========
+let members = [];
 
 // ========== EVENT LISTENERS - PAGE NAVIGATION ==========
 enterBtn.addEventListener('click', navigateToApp);
@@ -66,6 +87,11 @@ shareBtn.addEventListener('click', shareInvitation);
 
 // ========== EVENT LISTENERS - FORM SUBMISSION ==========
 partyForm.addEventListener('submit', handleCreateParty);
+membershipForm.addEventListener('submit', handleMembershipSubmit);
+
+// ========== EVENT LISTENERS - NAVIGATION ==========
+navEvents.addEventListener('click', () => switchTab('events'));
+navMembership.addEventListener('click', () => switchTab('membership'));
 
 // ========== FUNCTIONS - PAGE NAVIGATION ==========
 function navigateToApp() {
@@ -91,51 +117,55 @@ function closeCelebration() {
     celebrationModal.classList.add('hidden');
 }
 
+// ========== FUNCTIONS - NAVIGATION TABS ==========
+function switchTab(tab) {
+    if (tab === 'events') {
+        navEvents.classList.add('active');
+        navMembership.classList.remove('active');
+        mainContent.classList.remove('hidden');
+        membershipSection.classList.add('hidden');
+        document.querySelector('.hero-banner').classList.remove('hidden');
+        createPartyBtn.classList.remove('hidden');
+    } else {
+        navMembership.classList.add('active');
+        navEvents.classList.remove('active');
+        mainContent.classList.add('hidden');
+        membershipSection.classList.remove('hidden');
+        document.querySelector('.hero-banner').classList.add('hidden');
+        createPartyBtn.classList.add('hidden');
+    }
+}
+
 // ========== FUNCTIONS - EVENT DETAIL PAGE ==========
+let currentDetailParty = null;
+
 function showEventDetailPage(party) {
+    currentDetailParty = party;
     mainContent.classList.add('hidden');
+    document.querySelector('.hero-banner').classList.add('hidden');
     eventDetailPage.classList.remove('hidden');
 
-    // Generate formal document content
-    const documentHTML = `
-        <h2>${escapeHtml(party.name)}</h2>
-        
-        <div class="event-detail-item">
-            <div class="detail-label">Date</div>
-            <div class="detail-value">${formatDate(party.date)}</div>
-        </div>
+    // Populate invitation card
+    invEventName.textContent = party.name;
+    invDate.textContent = formatDate(party.date);
+    invTime.textContent = party.time;
+    invLocation.textContent = party.location;
 
-        <div class="event-detail-item">
-            <div class="detail-label">Time</div>
-            <div class="detail-value">${party.time}</div>
-        </div>
+    if (party.description) {
+        invDescRow.classList.remove('hidden');
+        invDescription.textContent = party.description;
+    } else {
+        invDescRow.classList.add('hidden');
+    }
 
-        <div class="event-detail-item">
-            <div class="detail-label">Venue</div>
-            <div class="detail-value">${escapeHtml(party.location)}</div>
-        </div>
-
-        ${party.description ? `
-            <div class="event-detail-item">
-                <div class="detail-label">Event Details</div>
-                <div class="detail-value">${escapeHtml(party.description)}</div>
-            </div>
-        ` : ''}
-
-        <div style="margin-top: 50px; text-align: center; font-style: italic; color: #999;">
-            <p>We look forward to celebrating with you</p>
-        </div>
-    `;
-
-    detailContent.innerHTML = documentHTML;
-
-    // Scroll to top
     window.scrollTo(0, 0);
 }
 
 function backToGrid() {
     eventDetailPage.classList.add('hidden');
     mainContent.classList.remove('hidden');
+    document.querySelector('.hero-banner').classList.remove('hidden');
+    currentDetailParty = null;
     renderParties();
 }
 
@@ -144,18 +174,14 @@ function printInvitation() {
 }
 
 function shareInvitation() {
-    const party = parties[parties.length - 1];
+    const party = currentDetailParty;
     if (!party) return;
 
-    const text = `You're invited to ${party.name}!
-📅 ${formatDate(party.date)} at ${party.time}
-📍 ${party.location}
-${party.description ? `\n📝 ${party.description}` : ''}
-
-Manage your RSVP at: INVITO - Luxury Event Curation Platform`;
+    const text = `You're invited to ${party.name}!\n${formatDate(party.date)} at ${party.time}\n${party.location}${party.description ? `\n${party.description}` : ''}\n\nINVITO - Luxury Event Curation Platform`;
 
     navigator.clipboard.writeText(text).then(() => {
-        alert('Invitation copied to clipboard!');
+        shareBtn.textContent = 'Copied!';
+        setTimeout(() => { shareBtn.textContent = 'Copy Invitation'; }, 2000);
     }).catch(() => {
         alert('Failed to copy. Please try again.');
     });
@@ -206,6 +232,11 @@ function deleteParty(id) {
     renderParties();
 }
 
+function viewInvitation(id) {
+    const party = parties.find(p => p.id === id);
+    if (party) showEventDetailPage(party);
+}
+
 // ========== FUNCTIONS - RENDER ==========
 function renderParties() {
     partiesGrid.innerHTML = '';
@@ -251,6 +282,7 @@ function createPartyCard(party) {
                 <div class="countdown-label">Until the party</div>
             </div>
             <div class="party-card-actions">
+                <button class="btn btn-primary btn-small" onclick="viewInvitation(${party.id})">View Invitation</button>
                 <button class="btn btn-primary btn-small" onclick="copyToClipboard(${party.id})">Copy Details</button>
                 <button class="btn btn-danger btn-small" onclick="deleteParty(${party.id})">Delete</button>
             </div>
@@ -290,6 +322,57 @@ ${party.description ? `\n📝 ${party.description}` : ''}`;
         alert('Party details copied to clipboard!');
     }).catch(() => {
         alert('Failed to copy. Please try again.');
+    });
+}
+
+// ========== FUNCTIONS - MEMBERSHIP ==========
+function handleMembershipSubmit(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('memberName').value.trim();
+    const email = document.getElementById('memberEmail').value.trim();
+    const phone = document.getElementById('memberPhone').value.trim();
+    const location = document.getElementById('memberLocation').value.trim();
+
+    const newMember = { name, email, phone, location };
+    members.push(newMember);
+
+    // Show success, hide form
+    membershipForm.classList.add('hidden');
+    membershipSuccess.classList.remove('hidden');
+
+    // Show members list
+    renderMembers();
+
+    // Reset form for next use after a delay
+    setTimeout(() => {
+        membershipForm.reset();
+        membershipForm.classList.remove('hidden');
+        membershipSuccess.classList.add('hidden');
+    }, 4000);
+}
+
+function renderMembers() {
+    if (members.length === 0) {
+        membersListSection.classList.add('hidden');
+        return;
+    }
+
+    membersListSection.classList.remove('hidden');
+    membersList.innerHTML = '';
+
+    members.forEach(member => {
+        const card = document.createElement('div');
+        card.className = 'member-card';
+        const initial = escapeHtml(member.name.charAt(0).toUpperCase());
+        card.innerHTML = `
+            <div class="member-initial">${initial}</div>
+            <div class="member-info">
+                <div class="member-name">${escapeHtml(member.name)}</div>
+                <div class="member-location">${escapeHtml(member.location)}</div>
+            </div>
+        `;
+        membersList.appendChild(card);
     });
 }
 

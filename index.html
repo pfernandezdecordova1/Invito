@@ -36,6 +36,10 @@
         <header class="header">
             <div class="container">
                 <h1 class="logo">INVITO</h1>
+                <nav class="nav-tabs">
+                    <button id="navEvents" class="nav-tab active">Events</button>
+                    <button id="navMembership" class="nav-tab">Become a Member</button>
+                </nav>
                 <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
             </div>
         </header>
@@ -109,30 +113,139 @@
         <div id="partiesGrid" class="parties-grid"></div>
     </main>
 
-    <!-- Event Detail Page -->
+    <!-- Membership Section -->
+    <section id="membershipSection" class="membership-section hidden">
+        <div class="container">
+            <div class="membership-hero">
+                <h2>Join the <span class="highlight">INVITO</span> Inner Circle</h2>
+                <p class="membership-subtitle">Gain exclusive access to private luxury events. As a member, you'll receive personalized invitations to the most prestigious gatherings curated through our platform.</p>
+            </div>
+
+            <div class="membership-grid">
+                <div class="membership-benefits">
+                    <h3>Member Benefits</h3>
+                    <ul class="benefits-list">
+                        <li>
+                            <span class="benefit-icon">01</span>
+                            <div>
+                                <strong>Private Event Access</strong>
+                                <p>Get invited to exclusive events created by INVITO hosts</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">02</span>
+                            <div>
+                                <strong>Priority RSVPs</strong>
+                                <p>First access to limited-capacity luxury gatherings</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">03</span>
+                            <div>
+                                <strong>Curated Experiences</strong>
+                                <p>Events matched to your location and preferences</p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="benefit-icon">04</span>
+                            <div>
+                                <strong>VIP Treatment</strong>
+                                <p>Personalized invitations and concierge service</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="membership-form-wrapper">
+                    <h3>Apply for Membership</h3>
+                    <form id="membershipForm" class="membership-form">
+                        <div class="form-group">
+                            <label for="memberName">Full Name *</label>
+                            <input type="text" id="memberName" required placeholder="Your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="memberEmail">Email *</label>
+                            <input type="email" id="memberEmail" required placeholder="your@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="memberPhone">Phone Number *</label>
+                            <input type="tel" id="memberPhone" required placeholder="+1 (555) 000-0000">
+                        </div>
+                        <div class="form-group">
+                            <label for="memberLocation">City / Location *</label>
+                            <input type="text" id="memberLocation" required placeholder="New York, NY">
+                        </div>
+                        <button type="submit" class="btn btn-cta" style="width: 100%; margin-top: 10px;">Request Membership</button>
+                    </form>
+                    <div id="membershipSuccess" class="membership-success hidden">
+                        <h3>Welcome to the Club</h3>
+                        <p>Your membership request has been submitted. We'll be in touch with exclusive event invitations soon.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members List -->
+            <div id="membersListSection" class="members-list-section hidden">
+                <h3>Registered Members</h3>
+                <div id="membersList" class="members-list"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Detail Page - Luxury Invitation -->
     <section id="eventDetailPage" class="event-detail-page hidden">
         <div class="event-detail-container">
             <button id="backToGridBtn" class="btn btn-back">← Back to Events</button>
             
-            <div class="formal-document">
-                <div class="document-header">
-                    <h1>INVITATION</h1>
-                    <div class="header-divider"></div>
-                </div>
+            <div class="invitation-card">
+                <div class="invitation-border">
+                    <div class="invitation-inner">
+                        <div class="invitation-top-ornament">★</div>
+                        
+                        <p class="invitation-pretext">You are cordially invited to</p>
+                        
+                        <h1 class="invitation-event-name" id="invEventName"></h1>
+                        
+                        <div class="invitation-divider">
+                            <span class="divider-ornament"></span>
+                        </div>
 
-                <div class="document-body">
-                    <div id="detailContent"></div>
-                </div>
+                        <div class="invitation-details">
+                            <div class="invitation-detail-row">
+                                <span class="inv-label">DATE</span>
+                                <span class="inv-value" id="invDate"></span>
+                            </div>
+                            <div class="invitation-detail-row">
+                                <span class="inv-label">TIME</span>
+                                <span class="inv-value" id="invTime"></span>
+                            </div>
+                            <div class="invitation-detail-row">
+                                <span class="inv-label">VENUE</span>
+                                <span class="inv-value" id="invLocation"></span>
+                            </div>
+                            <div class="invitation-detail-row" id="invDescRow">
+                                <span class="inv-label">DETAILS</span>
+                                <span class="inv-value" id="invDescription"></span>
+                            </div>
+                        </div>
 
-                <div class="document-footer">
-                    <p>Powered by <span class="brand-name">INVITO</span></p>
-                    <p style="font-size: 12px; margin-top: 10px;">Luxury Event Curation Platform</p>
+                        <div class="invitation-divider">
+                            <span class="divider-ornament"></span>
+                        </div>
+
+                        <p class="invitation-closing">We look forward to celebrating with you</p>
+
+                        <div class="invitation-footer">
+                            <span class="invitation-brand">INVITO</span>
+                            <span class="invitation-tagline">Luxury Event Curation</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <div class="action-buttons">
                 <button id="printBtn" class="btn btn-primary">Print Invitation</button>
-                <button id="shareBtn" class="btn btn-primary">Copy Invitation Link</button>
+                <button id="shareBtn" class="btn btn-primary">Copy Invitation</button>
             </div>
         </div>
     </section>
