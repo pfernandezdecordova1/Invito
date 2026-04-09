@@ -41,4 +41,3 @@ https://pfernandezdecordova1.github.io/Invito/
 - CSS (custom properties, CSS Grid, Flexbox, animations)
 - Vanilla JavaScript (DOM manipulation, Clipboard API)
 - Google Fonts (Playfair Display, Montserrat)
-- Unsplash images

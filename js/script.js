@@ -1,10 +1,8 @@
 
-// ========== STATE ==========
 let parties = JSON.parse(localStorage.getItem('invito_parties') || '[]');
 let nextId = JSON.parse(localStorage.getItem('invito_nextId') || '1');
 let members = JSON.parse(localStorage.getItem('invito_members') || '[]');
 
-// ========== DOM ELEMENTS ==========
 const landingPage = document.getElementById('landingPage');
 const mainApp = document.getElementById('mainApp');
 const enterBtn = document.getElementById('enterBtn');
@@ -25,7 +23,6 @@ const backToGridBtn = document.getElementById('backToGridBtn');
 const printBtn = document.getElementById('printBtn');
 const shareBtn = document.getElementById('shareBtn');
 
-// Invitation detail elements
 const invEventName = document.getElementById('invEventName');
 const invDate = document.getElementById('invDate');
 const invTime = document.getElementById('invTime');
@@ -33,18 +30,28 @@ const invLocation = document.getElementById('invLocation');
 const invDescription = document.getElementById('invDescription');
 const invDescRow = document.getElementById('invDescRow');
 
-// Navigation tabs
 const navEvents = document.getElementById('navEvents');
+const navGallery = document.getElementById('navGallery');
+const navVenues = document.getElementById('navVenues');
+const navTestimonials = document.getElementById('navTestimonials');
+const navContact = document.getElementById('navContact');
 const navMembership = document.getElementById('navMembership');
 
-// Membership elements
 const membershipSection = document.getElementById('membershipSection');
+const gallerySection = document.getElementById('gallerySection');
+const venuesSection = document.getElementById('venuesSection');
+const testimonialsSection = document.getElementById('testimonialsSection');
+const contactSection = document.getElementById('contactSection');
+
 const membershipForm = document.getElementById('membershipForm');
 const membershipSuccess = document.getElementById('membershipSuccess');
 const membersListSection = document.getElementById('membersListSection');
 const membersList = document.getElementById('membersList');
 
-// New interactive elements
+const contactForm = document.getElementById('contactForm');
+const contactSuccess = document.getElementById('contactSuccess');
+const newsletterForm = document.getElementById('newsletterForm');
+
 const themeToggle = document.getElementById('themeToggle');
 const searchInput = document.getElementById('searchInput');
 const sortSelect = document.getElementById('sortSelect');
@@ -53,14 +60,15 @@ const toastContainer = document.getElementById('toastContainer');
 const confettiCanvas = document.getElementById('confettiCanvas');
 const confettiCtx = confettiCanvas.getContext('2d');
 
-// ========== PERSISTENCE ==========
+const allSections = [mainContent, gallerySection, venuesSection, testimonialsSection, contactSection, membershipSection, eventDetailPage];
+const allNavTabs = [navEvents, navGallery, navVenues, navTestimonials, navContact, navMembership];
+
 function saveState() {
     localStorage.setItem('invito_parties', JSON.stringify(parties));
     localStorage.setItem('invito_nextId', JSON.stringify(nextId));
     localStorage.setItem('invito_members', JSON.stringify(members));
 }
 
-// ========== TOAST NOTIFICATIONS ==========
 function showToast(message, type = 'default') {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
@@ -70,7 +78,6 @@ function showToast(message, type = 'default') {
     setTimeout(() => toast.remove(), 3000);
 }
 
-// ========== CONFETTI SYSTEM ==========
 let confettiPieces = [];
 let confettiAnimating = false;
 
@@ -132,7 +139,6 @@ function animateConfetti() {
     }
 }
 
-// ========== TYPING ANIMATION ==========
 function typeText(element, text, speed = 80) {
     return new Promise(resolve => {
         let i = 0;
@@ -167,7 +173,6 @@ async function runTypingAnimation() {
     }
 }
 
-// ========== PARTICLE BACKGROUND ==========
 function createParticles() {
     const hero = document.querySelector('.landing-hero');
     if (!hero) return;
@@ -185,7 +190,6 @@ function createParticles() {
     }
 }
 
-// ========== SCROLL REVEAL ==========
 function setupScrollReveal() {
     const aboutHeader = document.querySelector('.about-header');
     const aboutCols = document.querySelectorAll('.about-col');
@@ -200,7 +204,6 @@ function setupScrollReveal() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('revealed');
-                // Trigger stat counting when stats come into view
                 if (entry.target.classList.contains('about-stats') || entry.target.closest('.about-stats')) {
                     animateStats();
                 }
@@ -214,7 +217,6 @@ function setupScrollReveal() {
     });
 }
 
-// ========== ANIMATED STAT COUNTERS ==========
 let statsAnimated = false;
 
 function animateStats() {
@@ -236,7 +238,7 @@ function animateStats() {
         function update(currentTime) {
             const elapsed = currentTime - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
             const current = Math.floor(target * eased);
 
             let display = hasK ? current + 'K' : String(current);
@@ -246,7 +248,7 @@ function animateStats() {
             if (progress < 1) {
                 requestAnimationFrame(update);
             } else {
-                stat.textContent = text; // restore original
+                stat.textContent = text;
                 stat.classList.remove('counting');
             }
         }
@@ -255,7 +257,6 @@ function animateStats() {
     });
 }
 
-// ========== DARK/LIGHT MODE ==========
 function initTheme() {
     const saved = localStorage.getItem('invito_theme');
     if (saved === 'light') {
@@ -271,7 +272,6 @@ themeToggle.addEventListener('click', () => {
     localStorage.setItem('invito_theme', isLight ? 'light' : 'dark');
 });
 
-// ========== LIVE COUNTDOWN TIMERS ==========
 let countdownInterval = null;
 
 function startCountdowns() {
@@ -307,7 +307,6 @@ function updateCountdowns() {
     });
 }
 
-// ========== SEARCH & SORT ==========
 function getFilteredParties() {
     const query = searchInput.value.toLowerCase().trim();
     const sortBy = sortSelect.value;
@@ -336,10 +335,8 @@ function getFilteredParties() {
 searchInput.addEventListener('input', renderParties);
 sortSelect.addEventListener('change', renderParties);
 
-// ========== EVENT LISTENERS - PAGE NAVIGATION ==========
 enterBtn.addEventListener('click', navigateToApp);
 
-// ========== EVENT LISTENERS - MODAL CONTROL ==========
 createPartyBtn.addEventListener('click', openForm);
 closeFormBtn.addEventListener('click', closeForm);
 cancelFormBtn.addEventListener('click', closeForm);
@@ -353,7 +350,6 @@ celebrationModal.addEventListener('click', (e) => {
     if (e.target === celebrationModal) closeCelebration();
 });
 
-// ========== EVENT LISTENERS - KEYBOARD SHORTCUTS ==========
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
         if (!formModal.classList.contains('hidden')) closeForm();
@@ -361,20 +357,29 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ========== EVENT LISTENERS - EVENT DETAIL PAGE ==========
 backToGridBtn.addEventListener('click', backToGrid);
 printBtn.addEventListener('click', printInvitation);
 shareBtn.addEventListener('click', shareInvitation);
 
-// ========== EVENT LISTENERS - FORM SUBMISSION ==========
 partyForm.addEventListener('submit', handleCreateParty);
 membershipForm.addEventListener('submit', handleMembershipSubmit);
+contactForm.addEventListener('submit', handleContactSubmit);
+newsletterForm.addEventListener('submit', handleNewsletterSubmit);
 
-// ========== EVENT LISTENERS - NAVIGATION ==========
 navEvents.addEventListener('click', () => switchTab('events'));
+navGallery.addEventListener('click', () => switchTab('gallery'));
+navVenues.addEventListener('click', () => switchTab('venues'));
+navTestimonials.addEventListener('click', () => switchTab('testimonials'));
+navContact.addEventListener('click', () => switchTab('contact'));
 navMembership.addEventListener('click', () => switchTab('membership'));
 
-// ========== FUNCTIONS - PAGE NAVIGATION ==========
+document.getElementById('footEvents').addEventListener('click', (e) => { e.preventDefault(); switchTab('events'); });
+document.getElementById('footGallery').addEventListener('click', (e) => { e.preventDefault(); switchTab('gallery'); });
+document.getElementById('footVenues').addEventListener('click', (e) => { e.preventDefault(); switchTab('venues'); });
+document.getElementById('footTestimonials').addEventListener('click', (e) => { e.preventDefault(); switchTab('testimonials'); });
+document.getElementById('footMembership').addEventListener('click', (e) => { e.preventDefault(); switchTab('membership'); });
+document.getElementById('footContact').addEventListener('click', (e) => { e.preventDefault(); switchTab('contact'); });
+
 function navigateToApp() {
     landingPage.classList.add('fade-out');
     setTimeout(() => {
@@ -385,7 +390,6 @@ function navigateToApp() {
     }, 500);
 }
 
-// ========== FUNCTIONS - MODAL CONTROL ==========
 function openForm() {
     formModal.classList.remove('hidden');
     partyForm.reset();
@@ -405,31 +409,40 @@ function closeCelebration() {
     celebrationModal.classList.add('hidden');
 }
 
-// ========== FUNCTIONS - NAVIGATION TABS ==========
+const tabMap = {
+    events:       { nav: navEvents,       section: mainContent,          showBanner: true,  showCreate: true },
+    gallery:      { nav: navGallery,      section: gallerySection,       showBanner: false, showCreate: false },
+    venues:       { nav: navVenues,       section: venuesSection,        showBanner: false, showCreate: false },
+    testimonials: { nav: navTestimonials, section: testimonialsSection,  showBanner: false, showCreate: false },
+    contact:      { nav: navContact,      section: contactSection,       showBanner: false, showCreate: false },
+    membership:   { nav: navMembership,   section: membershipSection,    showBanner: false, showCreate: false }
+};
+
 function switchTab(tab) {
-    if (tab === 'events') {
-        navEvents.classList.add('active');
-        navMembership.classList.remove('active');
-        mainContent.classList.remove('hidden');
-        membershipSection.classList.add('hidden');
-        document.querySelector('.hero-banner').classList.remove('hidden');
-        createPartyBtn.classList.remove('hidden');
-    } else {
-        navMembership.classList.add('active');
-        navEvents.classList.remove('active');
-        mainContent.classList.add('hidden');
-        membershipSection.classList.remove('hidden');
-        document.querySelector('.hero-banner').classList.add('hidden');
-        createPartyBtn.classList.add('hidden');
-    }
+    allNavTabs.forEach(n => n.classList.remove('active'));
+    allSections.forEach(s => s.classList.add('hidden'));
+
+    const cfg = tabMap[tab];
+    if (!cfg) return;
+
+    cfg.nav.classList.add('active');
+    cfg.section.classList.remove('hidden');
+
+    const banner = document.querySelector('.hero-banner');
+    if (cfg.showBanner) banner.classList.remove('hidden');
+    else banner.classList.add('hidden');
+
+    if (cfg.showCreate) createPartyBtn.classList.remove('hidden');
+    else createPartyBtn.classList.add('hidden');
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ========== FUNCTIONS - EVENT DETAIL PAGE ==========
 let currentDetailParty = null;
 
 function showEventDetailPage(party) {
     currentDetailParty = party;
-    mainContent.classList.add('hidden');
+    allSections.forEach(s => s.classList.add('hidden'));
     document.querySelector('.hero-banner').classList.add('hidden');
     eventDetailPage.classList.remove('hidden');
 
@@ -452,6 +465,9 @@ function backToGrid() {
     eventDetailPage.classList.add('hidden');
     mainContent.classList.remove('hidden');
     document.querySelector('.hero-banner').classList.remove('hidden');
+    allNavTabs.forEach(n => n.classList.remove('active'));
+    navEvents.classList.add('active');
+    createPartyBtn.classList.remove('hidden');
     currentDetailParty = null;
     renderParties();
 }
@@ -475,7 +491,6 @@ function shareInvitation() {
     });
 }
 
-// ========== FUNCTIONS - CREATE PARTY ==========
 function handleCreateParty(e) {
     e.preventDefault();
 
@@ -512,7 +527,6 @@ function handleCreateParty(e) {
     }
 }
 
-// ========== FUNCTIONS - DELETE PARTY ==========
 function deleteParty(id) {
     const party = parties.find(p => p.id === id);
     parties = parties.filter(p => p.id !== id);
@@ -526,7 +540,6 @@ function viewInvitation(id) {
     if (party) showEventDetailPage(party);
 }
 
-// ========== FUNCTIONS - RSVP ==========
 function toggleRSVP(id) {
     const party = parties.find(p => p.id === id);
     if (!party) return;
@@ -549,7 +562,6 @@ function toggleRSVP(id) {
     renderParties();
 }
 
-// ========== FUNCTIONS - RENDER ==========
 function renderParties() {
     partiesGrid.innerHTML = '';
     const filtered = getFilteredParties();
@@ -618,7 +630,6 @@ function createPartyCard(party) {
     return card;
 }
 
-// ========== FUNCTIONS - UTILITIES ==========
 function formatDate(dateString) {
     const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
     return new Date(dateString + 'T00:00:00').toLocaleDateString('en-US', options);
@@ -651,7 +662,6 @@ ${party.description ? `\n📝 ${party.description}` : ''}`;
     });
 }
 
-// ========== FUNCTIONS - MEMBERSHIP ==========
 function handleMembershipSubmit(e) {
     e.preventDefault();
 
@@ -702,9 +712,98 @@ function renderMembers() {
     });
 }
 
-// ========== INITIALIZATION ==========
+function handleContactSubmit(e) {
+    e.preventDefault();
+    const name = document.getElementById('contactName').value.trim();
+    contactForm.classList.add('hidden');
+    contactSuccess.classList.remove('hidden');
+    showToast(`Thanks ${name}, message sent!`, 'success');
+
+    setTimeout(() => {
+        contactForm.reset();
+        contactForm.classList.remove('hidden');
+        contactSuccess.classList.add('hidden');
+    }, 4000);
+}
+
+function handleNewsletterSubmit(e) {
+    e.preventDefault();
+    const email = document.getElementById('newsletterEmail').value.trim();
+    showToast(`Subscribed! We'll send updates to ${email}`, 'success');
+    newsletterForm.reset();
+}
+
+function setupGalleryFilters() {
+    const filters = document.querySelectorAll('.gallery-filter');
+    const items = document.querySelectorAll('.gallery-item');
+
+    filters.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filters.forEach(f => f.classList.remove('active'));
+            btn.classList.add('active');
+
+            const category = btn.dataset.filter;
+            items.forEach(item => {
+                if (category === 'all' || item.dataset.category === category) {
+                    item.classList.remove('gallery-hidden');
+                } else {
+                    item.classList.add('gallery-hidden');
+                }
+            });
+        });
+    });
+}
+
+let carouselIndex = 0;
+
+function setupTestimonialsCarousel() {
+    const track = document.getElementById('testimonialTrack');
+    const cards = track.querySelectorAll('.testimonial-card');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dotsContainer = document.getElementById('carouselDots');
+
+    let visibleCount = 1;
+    if (window.innerWidth >= 1024) visibleCount = 3;
+    else if (window.innerWidth >= 769) visibleCount = 2;
+
+    const maxIndex = Math.max(0, cards.length - visibleCount);
+
+    dotsContainer.innerHTML = '';
+    for (let i = 0; i <= maxIndex; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goToSlide(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    function goToSlide(idx) {
+        carouselIndex = Math.max(0, Math.min(idx, maxIndex));
+        const percent = carouselIndex * (100 / visibleCount);
+        track.style.transform = `translateX(-${percent}%)`;
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+            d.classList.toggle('active', i === carouselIndex);
+        });
+    }
+
+    prevBtn.addEventListener('click', () => goToSlide(carouselIndex - 1));
+    nextBtn.addEventListener('click', () => goToSlide(carouselIndex + 1));
+
+    window.addEventListener('resize', () => {
+        let newVisible = 1;
+        if (window.innerWidth >= 1024) newVisible = 3;
+        else if (window.innerWidth >= 769) newVisible = 2;
+        if (newVisible !== visibleCount) {
+            visibleCount = newVisible;
+            setupTestimonialsCarousel();
+        }
+    });
+}
+
 initTheme();
 createParticles();
 runTypingAnimation();
 renderParties();
 renderMembers();
+setupGalleryFilters();
+setupTestimonialsCarousel();

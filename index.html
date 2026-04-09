@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- ===== LANDING PAGE ===== -->
     <section id="landingPage" class="landing-page">
         <div class="landing-hero" style="background: linear-gradient(135deg, rgba(10, 22, 41, 0.92), rgba(13, 27, 61, 0.92)), url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=1200&q=80') center/cover;">
             <div class="landing-content">
@@ -31,13 +30,16 @@
         </div>
     </section>
 
-    <!-- ===== MAIN APP PAGE ===== -->
     <section id="mainApp" class="main-app hidden">
         <header class="header">
             <div class="container">
                 <h1 class="logo">INVITO</h1>
                 <nav class="nav-tabs">
                     <button id="navEvents" class="nav-tab active">Events</button>
+                    <button id="navGallery" class="nav-tab">Gallery</button>
+                    <button id="navVenues" class="nav-tab">Venues</button>
+                    <button id="navTestimonials" class="nav-tab">Testimonials</button>
+                    <button id="navContact" class="nav-tab">Contact</button>
                     <button id="navMembership" class="nav-tab">Become a Member</button>
                 </nav>
                 <div class="header-actions">
@@ -268,6 +270,467 @@
         </div>
     </section>
 
+    <section id="gallerySection" class="gallery-section hidden">
+        <div class="container">
+            <div class="section-hero">
+                <span class="section-label">Portfolio</span>
+                <h2>Moments Worth <span class="highlight">Remembering</span></h2>
+                <p class="section-subtitle">A glimpse into the world of INVITO. Every image tells a story of connection, celebration, and curated luxury.</p>
+            </div>
+
+            <div class="gallery-filters">
+                <button class="gallery-filter active" data-filter="all">All</button>
+                <button class="gallery-filter" data-filter="gala">Galas</button>
+                <button class="gallery-filter" data-filter="cocktail">Cocktails</button>
+                <button class="gallery-filter" data-filter="outdoor">Outdoor</button>
+                <button class="gallery-filter" data-filter="nightlife">Nightlife</button>
+            </div>
+
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" data-category="gala">
+                    <img src="https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80" alt="Luxury gala evening" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>La Nuit Dor&eacute;e</h4>
+                        <p>Paris, France</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cocktail">
+                    <img src="https://images.unsplash.com/photo-1496337589254-7e19d01cec44?w=600&q=80" alt="Elegant cocktail party" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>The Velvet Hour</h4>
+                        <p>Milan, Italy</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="nightlife">
+                    <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=600&q=80" alt="Concert lights" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Neon Reverie</h4>
+                        <p>Tokyo, Japan</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="gala">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=600&q=80" alt="Festive celebration" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>The Obsidian Affair</h4>
+                        <p>Mykonos, Greece</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="outdoor">
+                    <img src="https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=600&q=80" alt="Outdoor celebration" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Garden of Eden</h4>
+                        <p>Buenos Aires, Argentina</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="nightlife">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=600&q=80" alt="DJ nightlife" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Club de Humo</h4>
+                        <p>Havana, Cuba</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cocktail">
+                    <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80" alt="Grand party" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Champagne &amp; Chaos</h4>
+                        <p>New York, USA</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="outdoor">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=600&q=80" alt="Beach party" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Sunset Protocol</h4>
+                        <p>Ibiza, Spain</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="gala">
+                    <img src="https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?w=600&q=80" alt="Ballroom gala" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>The Golden Thread</h4>
+                        <p>London, UK</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="gala">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=80" alt="Met Gala after-party with chandeliers" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>The Met After-Party</h4>
+                        <p>New York, USA</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="outdoor">
+                    <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=600&q=80" alt="Coachella festival crowd" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Coachella Closing Night</h4>
+                        <p>Indio, California</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="nightlife">
+                    <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?w=600&q=80" alt="Tomorrowland mainstage fireworks" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Tomorrowland Mainstage</h4>
+                        <p>Boom, Belgium</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="cocktail">
+                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Monaco Grand Prix gala" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Monaco Grand Prix Gala</h4>
+                        <p>Monte Carlo, Monaco</p>
+                    </div>
+                </div>
+                <div class="gallery-item" data-category="outdoor">
+                    <img src="https://images.unsplash.com/photo-1528495612343-9ca9f4a4de28?w=600&q=80" alt="Full Moon Party beach" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>Full Moon Party</h4>
+                        <p>Koh Phangan, Thailand</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="venuesSection" class="venues-section hidden">
+        <div class="container">
+            <div class="section-hero">
+                <span class="section-label">Destinations</span>
+                <h2>Where the <span class="highlight">Magic</span> Happens</h2>
+                <p class="section-subtitle">From rooftop penthouses to hidden courtyards, our venues are as extraordinary as the people who fill them.</p>
+            </div>
+
+            <div class="venues-grid">
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxury hotel venue" loading="lazy">
+                        <span class="venue-badge">Featured</span>
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">New York, USA</div>
+                        <h3>The Plaza Rooftop</h3>
+                        <p>An iconic rooftop overlooking Central Park. Accommodates 300 guests with panoramic skyline views and a dedicated cocktail terrace.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 4.9</span>
+                            <span>Up to 300</span>
+                            <span>Indoor + Outdoor</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80" alt="Chateau venue" loading="lazy">
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">Paris, France</div>
+                        <h3>Ch&acirc;teau de Lumi&egrave;re</h3>
+                        <p>A private 18th-century ch&acirc;teau fifty minutes outside Paris. Candlelit halls, manicured gardens, and a cellar stocked with vintage wines.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 5.0</span>
+                            <span>Up to 200</span>
+                            <span>Indoor + Gardens</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80" alt="Beach club" loading="lazy">
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">Mykonos, Greece</div>
+                        <h3>Azure Beach Club</h3>
+                        <p>White-washed terraces cascading toward a private cove. Live DJ booth, infinity pool, and Aegean sunsets that stop you mid-sentence.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 4.8</span>
+                            <span>Up to 150</span>
+                            <span>Outdoor Beachfront</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=600&q=80" alt="Tokyo skybar" loading="lazy">
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">Tokyo, Japan</div>
+                        <h3>Shibuya Sky Lounge</h3>
+                        <p>Floor-to-ceiling glass forty stories above Shibuya Crossing. Minimalist design, omakase catering, and the city glowing beneath your feet.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 4.9</span>
+                            <span>Up to 120</span>
+                            <span>Indoor Penthouse</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=80" alt="Buenos Aires courtyard" loading="lazy">
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">Buenos Aires, Argentina</div>
+                        <h3>Casa del Tango</h3>
+                        <p>A restored colonial mansion in San Telmo with cobblestone courtyard, live tango orchestra, and Malbec by candlelight.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 4.7</span>
+                            <span>Up to 100</span>
+                            <span>Indoor + Courtyard</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="venue-card">
+                    <div class="venue-image">
+                        <img src="https://images.unsplash.com/photo-1445019980597-93fa8acb246c?w=600&q=80" alt="London venue" loading="lazy">
+                    </div>
+                    <div class="venue-info">
+                        <div class="venue-location">London, UK</div>
+                        <h3>The Shard Penthouse</h3>
+                        <p>A triple-height penthouse above the Thames with a wraparound terrace, bespoke cocktail bar, and views from Westminster to Canary Wharf.</p>
+                        <div class="venue-meta">
+                            <span>&#9733; 4.9</span>
+                            <span>Up to 250</span>
+                            <span>Indoor + Terrace</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonialsSection" class="testimonials-section hidden">
+        <div class="container">
+            <div class="section-hero">
+                <span class="section-label">Voices</span>
+                <h2>What Our Members <span class="highlight">Say</span></h2>
+                <p class="section-subtitle">Real stories from real people who trusted INVITO to change their nights &mdash; and sometimes their lives.</p>
+            </div>
+
+            <div class="testimonials-carousel">
+                <div class="testimonial-track" id="testimonialTrack">
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;I walked into La Nuit Dor&eacute;e knowing no one. I left with a business partner, three dinner invitations, and a feeling I hadn't had since college &mdash; that anything is possible when the right people are in the room.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">S</div>
+                            <div>
+                                <strong>Sofia Rennert</strong>
+                                <span>Tech Founder &middot; Berlin</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;INVITO doesn't throw parties. They engineer serendipity. My co-founder and I met at The Obsidian Affair on a yacht in Mykonos. Our startup closed its Series A nine months later.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">J</div>
+                            <div>
+                                <strong>James Okoro</strong>
+                                <span>VC Partner &middot; London</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;I've attended events all over the world &mdash; Cannes, Art Basel, Davos. Nothing compares to the intimacy and intentionality of an INVITO gathering. The curation is flawless.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">A</div>
+                            <div>
+                                <strong>Amara Chen</strong>
+                                <span>Art Director &middot; New York</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;Club de Humo in Havana was the most magical night of my life. Live jazz, vintage cigars, and conversations that made you forget what time it was. I've been a member ever since.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">M</div>
+                            <div>
+                                <strong>Marco Delgado</strong>
+                                <span>Architect &middot; Barcelona</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;My husband proposed at an INVITO rooftop event in Buenos Aires. They didn't plan it, but they created the exact environment where something that beautiful could happen.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">L</div>
+                            <div>
+                                <strong>Lucia Fernandez</strong>
+                                <span>Journalist &middot; Buenos Aires</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <blockquote>&ldquo;As a young professional in Tokyo, finding genuine connection is hard. INVITO changed that for me. Every event feels like coming home to a family you chose for yourself.&rdquo;</blockquote>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">Y</div>
+                            <div>
+                                <strong>Yuki Tanaka</strong>
+                                <span>Designer &middot; Tokyo</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="carouselPrev">&#8592;</button>
+                    <div class="carousel-dots" id="carouselDots"></div>
+                    <button class="carousel-btn" id="carouselNext">&#8594;</button>
+                </div>
+            </div>
+
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <div class="trust-number">4.9</div>
+                    <div class="trust-label">Average Rating</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-number">98%</div>
+                    <div class="trust-label">Would Recommend</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-number">12K+</div>
+                    <div class="trust-label">Happy Members</div>
+                </div>
+                <div class="trust-badge">
+                    <div class="trust-number">87</div>
+                    <div class="trust-label">Events Hosted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contactSection" class="contact-section hidden">
+        <div class="container">
+            <div class="section-hero">
+                <span class="section-label">Get in Touch</span>
+                <h2>Let's Create Something <span class="highlight">Extraordinary</span></h2>
+                <p class="section-subtitle">Have a question, a venue proposal, or a partnership idea? We'd love to hear from you.</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info-block">
+                    <h3>Our Offices</h3>
+                    <div class="contact-offices">
+                        <div class="office">
+                            <h4>New York <span class="office-hq">HQ</span></h4>
+                            <p>401 Park Avenue South<br>Suite 1200<br>New York, NY 10016</p>
+                        </div>
+                        <div class="office">
+                            <h4>London</h4>
+                            <p>32 St James's Street<br>Mayfair<br>London, SW1A 1HD</p>
+                        </div>
+                        <div class="office">
+                            <h4>Tokyo</h4>
+                            <p>Roppongi Hills Mori Tower<br>38th Floor<br>Minato City, Tokyo</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-details">
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#9993;</span>
+                            <div>
+                                <strong>Email</strong>
+                                <p>hello@invito.club</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#9742;</span>
+                            <div>
+                                <strong>Phone</strong>
+                                <p>+1 (212) 555-0199</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#9202;</span>
+                            <div>
+                                <strong>Hours</strong>
+                                <p>Mon &ndash; Fri: 9AM &ndash; 8PM EST</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" class="social-icon" title="Instagram">IG</a>
+                            <a href="#" class="social-icon" title="Twitter">TW</a>
+                            <a href="#" class="social-icon" title="LinkedIn">LI</a>
+                            <a href="#" class="social-icon" title="Facebook">FB</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-details" style="margin-top: 30px; padding-top: 24px; border-top: 1px solid rgba(212,175,55,0.2);">
+                        <h3 style="margin-bottom: 16px;">Founder &amp; Contact Person</h3>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#128100;</span>
+                            <div>
+                                <strong>Pablo Fernandez de Cordova</strong>
+                                <p>Founder &amp; Creative Director</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#9993;</span>
+                            <div>
+                                <strong>Direct Email</strong>
+                                <p>pfernandezdecordova1@babson.edu</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#128197;</span>
+                            <div>
+                                <strong>Availability</strong>
+                                <p>Monday &ndash; Friday: 9 AM &ndash; 6 PM EST</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail-item">
+                            <span class="contact-icon">&#128683;</span>
+                            <div>
+                                <strong>Days Off</strong>
+                                <p>Not available on Saturdays &amp; Sundays</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <h3>Send a Message</h3>
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="contactName">Your Name *</label>
+                                <input type="text" id="contactName" required placeholder="Jane Smith">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail">Your Email *</label>
+                                <input type="email" id="contactEmail" required placeholder="jane@example.com">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactSubject">Subject *</label>
+                            <select id="contactSubject" required>
+                                <option value="" disabled selected>Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="partnership">Partnership / Sponsorship</option>
+                                <option value="venue">Venue Proposal</option>
+                                <option value="membership">Membership Questions</option>
+                                <option value="press">Press / Media</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contactMessage">Message *</label>
+                            <textarea id="contactMessage" required placeholder="Tell us what's on your mind..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-cta" style="width: 100%; margin-top: 10px;">Send Message</button>
+                    </form>
+                    <div id="contactSuccess" class="contact-success hidden">
+                        <h3>Message Sent</h3>
+                        <p>Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Event Detail Page - Luxury Invitation -->
     <section id="eventDetailPage" class="event-detail-page hidden">
         <div class="event-detail-container">
@@ -326,6 +789,46 @@
         </div>
     </section>
     </section>
+
+    <footer id="appFooter" class="app-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3 class="footer-logo">INVITO</h3>
+                    <p>Where extraordinary moments meet effortless elegance. Curating luxury events across 14 cities worldwide since 2019.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Navigate</h4>
+                    <ul>
+                        <li><a href="#" id="footEvents">Events</a></li>
+                        <li><a href="#" id="footGallery">Gallery</a></li>
+                        <li><a href="#" id="footVenues">Venues</a></li>
+                        <li><a href="#" id="footTestimonials">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#" id="footMembership">Membership</a></li>
+                        <li><a href="#" id="footContact">Contact Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Stay in the Loop</h4>
+                    <p>Get notified about upcoming events.</p>
+                    <form id="newsletterForm" class="newsletter-form">
+                        <input type="email" id="newsletterEmail" placeholder="your@email.com" required>
+                        <button type="submit" class="btn btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 INVITO. All rights reserved. Crafted with passion.</p>
+            </div>
+        </div>
+    </footer>
 
     <!-- Toast Container -->
     <div id="toastContainer" class="toast-container"></div>
