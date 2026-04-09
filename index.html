@@ -15,9 +15,9 @@
                 <h1 class="landing-title">Are you prepared to become a member of the <span class="highlight">INVITO CLUB</span>?</h1>
                 
                 <div class="landing-taglines">
-                    <p class="tagline">Be Yourself</p>
-                    <p class="tagline">Stop Stressing</p>
-                    <p class="tagline">Start Celebrating</p>
+                    <p class="tagline" id="tagline1"></p>
+                    <p class="tagline" id="tagline2"></p>
+                    <p class="tagline" id="tagline3"></p>
                 </div>
 
                 <p class="landing-description">
@@ -40,7 +40,10 @@
                     <button id="navEvents" class="nav-tab active">Events</button>
                     <button id="navMembership" class="nav-tab">Become a Member</button>
                 </nav>
-                <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
+                <div class="header-actions">
+                    <button id="themeToggle" class="btn-icon" title="Toggle theme">☀️</button>
+                    <button id="createPartyBtn" class="btn btn-primary">+ Create Party</button>
+                </div>
             </div>
         </header>
 
@@ -108,6 +111,11 @@
                     <textarea id="partyDescription" placeholder="Dress code, special requests, theme..."></textarea>
                 </div>
 
+                <div class="form-group">
+                    <label for="partyMaxGuests">Max Guests</label>
+                    <input type="number" id="partyMaxGuests" min="1" max="10000" placeholder="e.g. 100">
+                </div>
+
                 <div class="form-actions">
                     <button type="submit" class="btn btn-primary">Create Event</button>
                     <button type="button" id="cancelFormBtn" class="btn btn-secondary">Cancel</button>
@@ -164,7 +172,21 @@
             </div>
         </section>
 
+        <!-- Search/Filter Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search events by name, location, or date...">
+            <select id="sortSelect">
+                <option value="newest">Newest First</option>
+                <option value="oldest">Oldest First</option>
+                <option value="upcoming">Upcoming First</option>
+                <option value="name">Name A-Z</option>
+            </select>
+        </div>
+
         <div id="partiesGrid" class="parties-grid"></div>
+        <div id="noResults" class="no-results hidden">
+            <p>No events match your search.</p>
+        </div>
     </main>
 
     <!-- Membership Section -->
@@ -304,6 +326,12 @@
         </div>
     </section>
     </section>
+
+    <!-- Toast Container -->
+    <div id="toastContainer" class="toast-container"></div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
 
     <script src="js/script.js"></script>
 </body>
